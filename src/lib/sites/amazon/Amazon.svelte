@@ -12,16 +12,16 @@
 
   const linkButtons: { getUrl: () => string | undefined; iconUrl?: string; label?: string }[] = [
     {
+      getUrl: () => getBooklogSearchUrl(getAmazonBookIsbn()!),
+      iconUrl: 'https://booklog.jp/favicon.ico',
+    },    
+    {
         getUrl: () => {
             const title = getAmazonBookTitle();
             return `https://store.shopping.yahoo.co.jp/bookoffonline/search.html?X=4&p=${title}`;
         },
         iconUrl: 'https://shopping.bookoff.co.jp/favicon.ico',
     },    
-    {
-      getUrl: () => getBooklogSearchUrl(getAmazonBookIsbn()!),
-      iconUrl: 'https://booklog.jp/favicon.ico',
-    },
     {
       getUrl: () => {
         const title = getAmazonBookTitle();
