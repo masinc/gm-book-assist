@@ -50,4 +50,16 @@
     --gm-button-padding-x: 0.5rem;
     --gm-button-gap: 0.3rem;
   }
+
+
+  /* for mobile */
+  @media (max-width: 768px){
+    .gm-amazon-container {
+      --gm-button-font-size: 2rem;
+      --gm-button-icon-size: 3rem;
+      --gm-button-padding-y: 0.5rem;
+      --gm-button-padding-x: 0.75rem;
+      --gm-button-gap: 0.6rem;
+    }
+  }  
 </style>

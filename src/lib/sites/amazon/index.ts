@@ -52,8 +52,8 @@ export const amazonConfig: SiteConfig = {
             throw new Error("Not an Amazon book page");
         }
 
-        const h1 = document.querySelector("#productTitle") ||
-            document.querySelector("h1#title");
+        const h1 = document.querySelector("#productTitle") || // desktop
+            document.querySelector("h1#title"); // mobile
         if (!h1) {
             throw new Error("Amazon book page title element not found");
         }
