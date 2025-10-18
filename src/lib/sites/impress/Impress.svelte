@@ -2,6 +2,7 @@
   import { getImpressIsbn, getImpressTitle } from '.';
   import CopyButton from '../../components/CopyButton.svelte';
   import LinkButton from '../../components/LinkButton.svelte';
+  import { getBooklogSearchUrl } from '../booklog';
   
 
   const copyButtons = [
@@ -11,20 +12,9 @@
 
   const linkButtons: { getUrl: () => string | undefined; iconUrl?: string; label?: string }[] = [
     {
-        getUrl: () => {
-            const title = getImpressTitle();
-            return `https://store.shopping.yahoo.co.jp/bookoffonline/search.html?X=4&p=${title}`;
-        },
-        iconUrl: 'https://shopping.bookoff.co.jp/favicon.ico',
-    },
-    {
-        getUrl: () => {
-            const title = getImpressTitle();
-            return `https://www.valuebooks.jp/search?keyword=${title}`
-        },
-        iconUrl: 'https://www.valuebooks.jp/favicon.ico',
-    }
-  ]
+      getUrl: () => getBooklogSearchUrl(getImpressIsbn()!),
+      iconUrl: 'https://booklog.jp/favicon.ico',
+    },  ]
 </script>
 
 <div class="gm-booklog-container">
