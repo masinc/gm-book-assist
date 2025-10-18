@@ -31,5 +31,6 @@
 
   .gm-label {
     line-height: 1;
+    white-space: nowrap;
   }
 </style>

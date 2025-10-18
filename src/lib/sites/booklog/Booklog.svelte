@@ -43,5 +43,28 @@
     --gm-button-padding-y: 0.5rem;
     --gm-button-padding-x: 0.5rem;
     --gm-button-gap: 0.3rem;
+
+    /* 共通レイアウト */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* for mobile */
+  @media (max-width: 768px) {
+    .gm-booklog-container {
+      --gm-button-font-size: 1.5rem;
+      --gm-button-icon-size: 2.0rem;
+      --gm-button-padding-y: 0.5rem;
+      --gm-button-padding-x: 0.5rem;
+      --gm-button-gap: 0.3rem;
+
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 </style>
