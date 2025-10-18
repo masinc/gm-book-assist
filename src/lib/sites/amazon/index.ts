@@ -1,8 +1,14 @@
 import type { SiteConfig } from "../types";
 
 export function getAmazonBookTitle() {
-    const elm = document.querySelector("#productTitle");
-    return elm?.textContent?.trim();
+    const productTitleElm = document.querySelector("#productTitle");
+    if (productTitleElm) {
+        return productTitleElm?.textContent?.trim();
+    }
+
+    // mobile
+    const titleElm = document.querySelector("h1#title");
+    return titleElm?.textContent?.trim();
 }
 
 export function getAmazonBookIsbn() {
@@ -46,7 +52,8 @@ export const amazonConfig: SiteConfig = {
             throw new Error("Not an Amazon book page");
         }
 
-        const h1 = document.querySelector("#productTitle");
+        const h1 = document.querySelector("#productTitle") ||
+            document.querySelector("h1#title");
         if (!h1) {
             throw new Error("Amazon book page title element not found");
         }
