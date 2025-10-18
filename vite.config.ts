@@ -17,6 +17,7 @@ export default defineConfig({
           "https://www.oreilly.co.jp/books/*",
           "https://www.seshop.com/product/detail/*",
           "https://book.impress.co.jp/books/*",
+          "https://gihyo.jp/book/*",
         ],
         grant: "none",
       },

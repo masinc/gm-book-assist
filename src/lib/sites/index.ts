@@ -1,5 +1,6 @@
 import { amazonConfig } from "./amazon";
 import { booklogConfig } from "./booklog";
+import { gihyoConfig } from "./gihyo";
 import { impressConfig } from "./impress";
 import { oreillyConfig } from "./oreilly";
 import { seshopConfig } from "./seshop";
@@ -11,4 +12,5 @@ export const sites: SiteConfig[] = [
     oreillyConfig,
     seshopConfig,
     impressConfig,
+    gihyoConfig,
 ] as const;
