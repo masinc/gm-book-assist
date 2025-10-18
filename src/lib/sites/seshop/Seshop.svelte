@@ -1,28 +1,19 @@
 <script lang="ts">
+  import { getSeshopBookIsbn, getSeshopBookTitle } from '.';
   import CopyButton from '../../components/CopyButton.svelte';
   import LinkButton from '../../components/LinkButton.svelte';
   import { getBooklogSearchUrl } from '../booklog';
 
-  function getBookTitle(): string | undefined {
-    // <<meta name="cxenseparse:sho-product-name">
-    const elm = document.querySelector("meta[name='cxenseparse:sho-product-name']")
-    return elm?.getAttribute("content") || undefined
-  }
 
-  function getBookIsbn(): string | undefined {
-    // <meta name="cxenseparse:sho-isbn">
-    const elm = document.querySelector("meta[name='cxenseparse:sho-isbn']")
-    return elm?.getAttribute("content") || undefined
-  }
 
   const copyButtons = [
-    { label: 'Title', getValue: getBookTitle },
-    { label: 'ISBN', getValue: getBookIsbn }
+    { label: 'Title', getValue: getSeshopBookTitle },
+    { label: 'ISBN', getValue: getSeshopBookIsbn }
   ]
 
   const linkButtons: { getUrl: () => string | undefined; iconUrl?: string; label?: string }[] = [
     {
-      getUrl: () => getBooklogSearchUrl(getBookIsbn()!),
+      getUrl: () => getBooklogSearchUrl(getSeshopBookTitle()!),
       iconUrl: 'https://booklog.jp/favicon.ico',
     },
   ]

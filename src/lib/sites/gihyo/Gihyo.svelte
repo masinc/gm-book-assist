@@ -12,7 +12,7 @@
 
   const linkButtons: { getUrl: () => string | undefined; iconUrl?: string; label?: string }[] = [
     {
-      getUrl: () => getBooklogSearchUrl(getGihyoIsbn()!),
+      getUrl: () => getBooklogSearchUrl(getGihyoTitle()!),
       iconUrl: 'https://booklog.jp/favicon.ico',
     },    
   ]
