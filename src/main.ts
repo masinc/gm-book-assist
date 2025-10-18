@@ -1,11 +1,9 @@
-// Import components to register them as custom elements
-import "./lib/sites/amazon/Amazon.svelte";
 import { sites } from "./lib/sites";
 import { mount } from "svelte";
 
 console.log(window.location.href);
 
-const app = (() => {
+const app = (async () => {
   const href = window.location.href;
 
   const site = sites.find((site) => href.match(site.matcher));
@@ -19,14 +17,12 @@ const app = (() => {
       return;
     }
 
-    // Create custom element instance
+    const componentModule = await site.getComponent();
+    const Component = componentModule.default || componentModule;
 
-    mount(
-      site.getComponent() as any,
-      {
-        target: rootContainer,
-      },
-    );
+    mount(Component, {
+      target: rootContainer,
+    });
 
     return rootContainer;
   }
