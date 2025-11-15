@@ -23,7 +23,14 @@
             return `https://www.valuebooks.jp/search?keyword=${title}`
         },
         iconUrl: 'https://www.valuebooks.jp/favicon.ico',
-    }
+      },
+      {
+        getUrl: () => {
+            const isbn = getBooklogIsbn();
+            return `https://www.maruzenjunkudo.co.jp/search?item_name=&q=${isbn}`;
+        },
+        iconUrl: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://maruzenjunkudo.co.jp&size=128',
+      }
   ]
 </script>
 
