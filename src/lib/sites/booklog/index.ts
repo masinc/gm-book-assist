@@ -11,7 +11,7 @@ export function getBooklogSearchUrl(keyword: string) {
 export function getBooklogTitle() {
     // desktop
     let elm = document.querySelector(
-        "#item-area > div.inner > div.item-info-area > h1",
+        "#item-area div.item-info-title > h1",
     );
 
     if (!elm) {
@@ -36,22 +36,28 @@ export const booklogConfig: SiteConfig = {
     matcher: /^https:\/\/booklog\.jp\/item\/1\/.*/,
     setup: (root) => {
         // desktop
-        let h1 = document.querySelector(
-            "#item-area > div.inner > div.item-info-area > h1",
+
+        let is_desktop = document.querySelector(
+            "#item-area div.item-info-title > h1",
         );
 
-        if (!h1) {
+        if (is_desktop) {
+            const title_elm = document.querySelector(
+                "#item-area div.item-info-title",
+            );
+            title_elm?.insertAdjacentElement("afterend", root);
+        } else {
             // mobile
-            h1 = document.querySelector(
-                "#main > div > section.item-area.ruled-line.b20P > div.item-info-container > div.right-area > h1",
+            const elm = document.querySelector(
+                "#main div.right-area > h1",
             );
 
-            if (!h1) {
+            if (!elm) {
                 throw new Error("Booklog book page title element not found");
             }
-        }
 
-        h1.insertAdjacentElement("afterend", root);
+            elm.insertAdjacentElement("afterend", root);
+        }
     },
     getComponent: () => import("./Booklog.svelte"),
 };
