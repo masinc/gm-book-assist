@@ -3,6 +3,7 @@
   import CopyButton from '../../components/CopyButton.svelte';
   import LinkButton from '../../components/LinkButton.svelte';
   import { getBooklogSearchUrl } from '../booklog';
+  import { getJunkudoSearchUrl } from '../junkudo';
   
 
   const copyButtons = [
@@ -28,6 +29,15 @@
         return `https://www.valuebooks.jp/search?keyword=${title}`;
       },
       iconUrl: 'https://www.valuebooks.jp/favicon.ico'
+    },
+    {
+      getUrl: () => {
+        const isbn = getAmazonBookIsbn();
+        if (!isbn) return undefined;
+        return getJunkudoSearchUrl(isbn);
+      },
+      iconUrl: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://maruzenjunkudo.co.jp&size=128',
+      label: 'ジュンク堂',
     }
   ]
 </script>

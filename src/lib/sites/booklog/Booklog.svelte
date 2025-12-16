@@ -2,6 +2,7 @@
   import { getBooklogIsbn, getBooklogTitle } from '.';
   import CopyButton from '../../components/CopyButton.svelte';
   import LinkButton from '../../components/LinkButton.svelte';
+  import { getJunkudoSearchUrl } from '../junkudo';
   
 
   const copyButtons = [
@@ -27,9 +28,11 @@
       {
         getUrl: () => {
             const isbn = getBooklogIsbn();
-            return `https://www.maruzenjunkudo.co.jp/search?item_name=&q=${isbn}`;
+            if (!isbn) return undefined;
+            return getJunkudoSearchUrl(isbn);
         },
         iconUrl: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://maruzenjunkudo.co.jp&size=128',
+        label: 'ジュンク堂',
       }
   ]
 </script>
