@@ -27,9 +27,9 @@
       },
       {
         getUrl: () => {
-            const isbn = getBooklogIsbn();
-            if (!isbn) return undefined;
-            return getJunkudoSearchUrl(isbn);
+            const title = getBooklogTitle();
+            if (!title) return undefined;
+            return getJunkudoSearchUrl(title);
         },
         iconUrl: 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://maruzenjunkudo.co.jp&size=128',
         label: 'ジュンク堂',
