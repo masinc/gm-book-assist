@@ -1,17 +1,39 @@
 import type { SiteConfig } from "../types";
 
 export function getSeshopBookTitle(): string | undefined {
-    // <<meta name="cxenseparse:sho-product-name">
-    const elm = document.querySelector(
-        "meta[name='cxenseparse:sho-product-name']",
-    );
-    return elm?.getAttribute("content") || undefined;
+    const ogTitle = document
+        .querySelector('meta[property="og:title"]')
+        ?.getAttribute("content");
+    if (ogTitle) {
+        return ogTitle.replace(/\s*[|｜]\s*SEshop.*$/i, "").trim();
+    }
+
+    const gtmTitle = document
+        .querySelector("#gtm-product-data")
+        ?.getAttribute("data-title");
+    if (gtmTitle) {
+        return gtmTitle.trim();
+    }
+
+    const h1 = document.querySelector(".cx_container_contents section h1, section h1, h1");
+    if (h1) {
+        const clone = h1.cloneNode(true) as HTMLElement;
+        clone.querySelectorAll(".badge").forEach((el) => el.remove());
+        return clone.textContent?.trim();
+    }
+
+    return undefined;
 }
 
 export function getSeshopBookIsbn(): string | undefined {
-    // <meta name="cxenseparse:sho-isbn">
-    const elm = document.querySelector("meta[name='cxenseparse:sho-isbn']");
-    return elm?.getAttribute("content") || undefined;
+    const dts = document.querySelectorAll(".dl-horizontal dt, dl dt");
+    for (const dt of dts) {
+        if (dt.textContent?.trim() === "ISBN") {
+            const dd = dt.nextElementSibling;
+            return dd?.textContent?.trim().replace(/-/g, "") || undefined;
+        }
+    }
+    return undefined;
 }
 
 export const seshopConfig: SiteConfig = {
@@ -22,8 +44,8 @@ export const seshopConfig: SiteConfig = {
         }
 
         const h1 = document.querySelector(
-            "#top > div.container.cx_container_contents > section:nth-child(2) > h1",
-        )!;
+            ".cx_container_contents section h1, section h1, h1",
+        );
         if (!h1) {
             throw new Error("Seshop book page title element not found");
         }
@@ -32,3 +54,4 @@ export const seshopConfig: SiteConfig = {
     },
     getComponent: () => import("./Seshop.svelte"),
 };
+
